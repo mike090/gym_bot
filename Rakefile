@@ -21,4 +21,9 @@ task console: :environment do
   IRB.start(__FILE__)
 end
 
+desc 'Start bot'
+task start: :environment do
+  GymBot.start
+end
+
 task default: %i[rubocop spec]
