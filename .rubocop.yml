@@ -1,0 +1,17 @@
+---
+
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 3.2
+  DisplayCopNames: true
+  SuggestExtensions: false
+  Exclude:
+    - 'bin/**'
+    - 'db/schema.rb'
+    - 'db/migrate/**'
+    - 'db/seeds.rb'
+
+Style/Documentation:
+  Enabled: false
+Naming/VariableNumber:
+  CheckSymbols: false
