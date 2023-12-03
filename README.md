@@ -18,4 +18,3 @@ Run the bot
 ... or work with console
 
     rake console
-

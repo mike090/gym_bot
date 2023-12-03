@@ -3,14 +3,17 @@
 require 'bundler/setup'
 require 'rubocop/rake_task'
 require 'rspec/core/rake_task'
+require 'standalone_migrations'
 
 RuboCop::RakeTask.new
+
 RSpec::Core::RakeTask.new(:spec) do |spec|
   spec.pattern = FileList['spec/**/*_spec.rb']
 end
 
+StandaloneMigrations::Tasks.load_tasks
+
 task :environment do
-  ENV['ENVIRONMENT'] ||= 'development'
   require File.expand_path('config/environment', __dir__)
 end
 

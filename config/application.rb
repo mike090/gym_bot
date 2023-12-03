@@ -2,7 +2,8 @@
 
 require_relative 'boot'
 
-require 'active_support'
+Bundler.require(*GymBot.groups)
+
 require 'singleton'
 
 module GymBot
@@ -11,12 +12,8 @@ module GymBot
       Application.instance
     end
 
-    def env
-      Application.config.env
-    end
-
     def root
-      Application.config.root
+      @root ||= Pathname(__dir__).join '..'
     end
 
     def start
