@@ -3,3 +3,6 @@
 
 # Ignore dotenv
 /.env
+
+# Ignore local data
+/db/*.sqlite3*

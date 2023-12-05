@@ -3,7 +3,12 @@
 source 'https://rubygems.org'
 
 gem 'activerecord'
+gem 'dotenv'
+gem 'erb'
+gem 'pg'
 gem 'rake'
+gem 'telegram-bot-ruby'
+gem 'yaml'
 gem 'zeitwerk'
 
 group :development do

@@ -5,6 +5,7 @@ require_relative 'boot'
 Bundler.require(*GymBot.groups)
 
 require 'singleton'
+require 'telegram/bot'
 
 module GymBot
   class << self
@@ -19,6 +20,10 @@ module GymBot
     def start
       application.run
     end
+
+    def logger
+      @logger ||= Logger.new($stdout, Logger::DEBUG)
+    end
   end
 
   class Application
@@ -26,7 +31,26 @@ module GymBot
     include ActiveSupport::Configurable
 
     def run
-      puts 'Running bot...'
+      trap(:INT) { client.stop }
+
+      client.listen do |message|
+        engine.handle(message)
+      end
+    end
+
+    private
+
+    def client
+      @client ||= begin
+        token = ENV.fetch('TELEGRAM_TOKEN', nil)
+        raise 'no TELEGRAM_TOKEN provided. See https://core.telegram.org/bots#how-do-i-create-a-bot' unless token
+
+        Telegram::Bot::Client.new(token, logger: GymBot.logger)
+      end
+    end
+
+    def engine
+      @engine ||= BotEngine.new(client.api)
     end
   end
 end

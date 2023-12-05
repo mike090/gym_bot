@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'application'
+require 'dotenv/load'
 
 GymBot::Application.configure do |config|
   config.database_configurations = begin
@@ -13,6 +14,8 @@ end
 
 loader = Zeitwerk::Loader.new
 loader.push_dir GymBot.root.join 'app/models'
+loader.push_dir GymBot.root.join 'app/services'
+loader.push_dir GymBot.root.join 'app'
 loader.setup
 
 env_config = GymBot.root.join "config/environments/#{GymBot.env}.rb"
