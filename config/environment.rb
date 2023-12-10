@@ -14,6 +14,7 @@ end
 
 loader = Zeitwerk::Loader.new
 loader.push_dir GymBot.root.join 'app/models'
+loader.push_dir GymBot.root.join 'app/models/concerns'
 loader.push_dir GymBot.root.join 'app/services'
 loader.push_dir GymBot.root.join 'app'
 loader.setup

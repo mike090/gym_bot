@@ -34,7 +34,7 @@ module GymBot
       trap(:INT) { client.stop }
 
       client.listen do |message|
-        engine.handle(message)
+        engine.call RequestContext.new(message)
       end
     end
 
@@ -50,7 +50,13 @@ module GymBot
     end
 
     def engine
-      @engine ||= BotEngine.new(client.api)
+      bot = client.api
+      @engine ||= Rack::Builder.app do
+        use Handlers::BanBots
+        use Handlers::Responder, bot
+        use Handlers::Registrator
+        run Handlers::Dummy.new
+      end
     end
   end
 end

@@ -3,7 +3,7 @@
 require 'bot_helper'
 
 RSpec.describe User, type: :model do
-  subject(:user) { create :user }
+  subject(:user) { create(:user) }
 
   it 'has a valid factory' do
     expect(user).to be_valid

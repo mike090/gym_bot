@@ -1,5 +1,8 @@
 ---
 
+require:
+  - rubocop-rspec
+
 AllCops:
   NewCops: enable
   TargetRubyVersion: 3.2
@@ -15,3 +18,9 @@ Style/Documentation:
   Enabled: false
 Naming/VariableNumber:
   CheckSymbols: false
+RSpec/MultipleExpectations:
+  Max: 7
+RSpec/ExampleLength:
+  Max: 12
+RSpec/Rails/InferredSpecType:
+  Enabled: false

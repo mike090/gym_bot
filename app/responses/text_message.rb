@@ -8,7 +8,7 @@ module Responses
       @options = options
     end
 
-    def send(bot, **options)
+    def post(bot, **options)
       bot.send_message(text: @message, **options.merge(@options))
     end
   end
